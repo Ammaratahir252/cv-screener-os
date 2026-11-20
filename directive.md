@@ -68,7 +68,6 @@ How I worked with AI tools, written so someone else can repeat the process.
   no extra installs: drag CVs in, see the evidence highlighted, click Advance/Reject, get drafts
   with Copy / Open in email app. The rules, quote checks, tests and cache underneath are unchanged;
   the .bat + CSV route still works as a fallback.
-- [Add anything else you noticed when running it yourself.]
 
 ## Prompt used inside the product
 See `SYSTEM_PROMPT` in `screener/assess.py`.
