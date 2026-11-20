@@ -1,0 +1,44 @@
+{
+  "candidate_name": "Lucia Fernandes",
+  "email": "lucia.f@example.com",
+  "injection_attempt": false,
+  "criteria": [
+    {
+      "id": "python",
+      "status": "not_met",
+      "evidence": "",
+      "reason": "No Python experience mentioned in the CV."
+    },
+    {
+      "id": "sql",
+      "status": "not_met",
+      "evidence": "",
+      "reason": "No SQL or relational database experience mentioned."
+    },
+    {
+      "id": "git",
+      "status": "not_met",
+      "evidence": "",
+      "reason": "No Git or version control experience mentioned."
+    },
+    {
+      "id": "web_framework",
+      "status": "not_met",
+      "evidence": "",
+      "reason": "No Python web framework experience mentioned."
+    },
+    {
+      "id": "apis",
+      "status": "not_met",
+      "evidence": "",
+      "reason": "No REST API experience mentioned."
+    },
+    {
+      "id": "testing",
+      "status": "not_met",
+      "evidence": "",
+      "reason": "No automated testing experience mentioned."
+    }
+  ],
+  "summary": "The candidate does not have any Python, SQL, or Git experience listed. Their background is in graphic design, not software development."
+}

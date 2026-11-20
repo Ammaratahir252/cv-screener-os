@@ -1,0 +1,44 @@
+{
+  "candidate_name": "Daniel Okafor",
+  "email": "daniel.okafor@example.com",
+  "injection_attempt": false,
+  "criteria": [
+    {
+      "id": "python",
+      "status": "met",
+      "evidence": "Backend developer with 2 years of professional Python experience building web services.",
+      "reason": "Shows >1 year of hands‑on Python work."
+    },
+    {
+      "id": "sql",
+      "status": "met",
+      "evidence": "Write SQL queries and migrations for a PostgreSQL database.",
+      "reason": "Demonstrates use of SQL and a relational DB."
+    },
+    {
+      "id": "git",
+      "status": "met",
+      "evidence": "all code reviewed through pull requests on GitHub.",
+      "reason": "Uses GitHub for version control."
+    },
+    {
+      "id": "web_framework",
+      "status": "met",
+      "evidence": "Build and maintain REST APIs in Python with Django REST Framework.",
+      "reason": "Uses Django, a Python web framework."
+    },
+    {
+      "id": "apis",
+      "status": "met",
+      "evidence": "Build and maintain REST APIs in Python with Django REST Framework.",
+      "reason": "Built REST APIs."
+    },
+    {
+      "id": "testing",
+      "status": "met",
+      "evidence": "Write unit tests with pytest; all code reviewed through pull requests on GitHub.",
+      "reason": "Writes automated tests with pytest."
+    }
+  ],
+  "summary": "Daniel Okafor has solid Python backend experience, including REST APIs, SQL, Git, and testing. He meets all required and nice‑to‑have criteria."
+}

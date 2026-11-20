@@ -1,0 +1,44 @@
+{
+  "candidate_name": "Mei Lin Chen",
+  "email": "meilin.chen@example.com",
+  "injection_attempt": false,
+  "criteria": [
+    {
+      "id": "python",
+      "status": "met",
+      "evidence": "- Develop backend services in Py 3 using FastAPI.",
+      "reason": "Shows Python usage for over a year."
+    },
+    {
+      "id": "sql",
+      "status": "met",
+      "evidence": "- Design tables and write queries in Postgres.",
+      "reason": "Demonstrates use of a relational database."
+    },
+    {
+      "id": "git",
+      "status": "met",
+      "evidence": "- Daily version control with branches and pull requests on GitHub.",
+      "reason": "Uses Git/GitHub for version control."
+    },
+    {
+      "id": "web_framework",
+      "status": "met",
+      "evidence": "- Develop backend services in Py 3 using FastAPI.",
+      "reason": "FastAPI is a Python web framework."
+    },
+    {
+      "id": "apis",
+      "status": "partly",
+      "evidence": "- Develop backend services in Py 3 using FastAPI.",
+      "reason": "FastAPI implies API work but REST not explicitly mentioned."
+    },
+    {
+      "id": "testing",
+      "status": "met",
+      "evidence": "- Added integration tests using unittest.",
+      "reason": "Shows automated testing with unittest."
+    }
+  ],
+  "summary": "Mei Lin Chen meets all must‑have requirements and most nice‑to‑have skills, including Python, SQL, Git, FastAPI, and testing. The only gap is an explicit mention of REST APIs."
+}

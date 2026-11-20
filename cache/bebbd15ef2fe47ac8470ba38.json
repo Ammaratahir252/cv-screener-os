@@ -1,0 +1,44 @@
+{
+  "candidate_name": "Daniel Okafor",
+  "email": "daniel.okafor@example.com",
+  "injection_attempt": false,
+  "criteria": [
+    {
+      "id": "python",
+      "status": "met",
+      "evidence": "Backend developer with 2 years of professional Python experience building web services.",
+      "reason": "Shows >1 year Python experience."
+    },
+    {
+      "id": "sql",
+      "status": "met",
+      "evidence": "Write SQL queries and migrations for a PostgreSQL database.",
+      "reason": "Demonstrates use of SQL."
+    },
+    {
+      "id": "git",
+      "status": "met",
+      "evidence": "all code reviewed through pull requests on GitHub.",
+      "reason": "Uses Git/GitHub for version control."
+    },
+    {
+      "id": "web_framework",
+      "status": "met",
+      "evidence": "Build and maintain REST APIs in Python with Django REST Framework.",
+      "reason": "Uses Django web framework."
+    },
+    {
+      "id": "apis",
+      "status": "met",
+      "evidence": "Build and maintain REST APIs in Python with Django REST Framework.",
+      "reason": "Built REST APIs."
+    },
+    {
+      "id": "testing",
+      "status": "met",
+      "evidence": "Write unit tests with pytest; all code reviewed through pull requests on GitHub.",
+      "reason": "Writes automated tests with pytest."
+    }
+  ],
+  "summary": "The candidate meets all required and nice‑to‑have criteria, showing solid Python, SQL, Git, web framework, API, and testing experience. They are a strong fit for a junior Python developer role."
+}

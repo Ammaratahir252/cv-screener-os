@@ -1,0 +1,13 @@
+# Which AI service to use: groq, gemini or openai.
+# Put the matching API key in a file called .env (see .env.example).
+provider: groq
+
+models:
+  groq: openai/gpt-oss-120b   # llama-3.3-70b-versatile was shut down by Groq (Aug 2026)
+  gemini: gemini-2.5-flash
+  openai: gpt-4o-mini
+
+# Folders (you normally don't need to change these)
+inbox_folder: inbox
+output_folder: output
+outbox_folder: outbox

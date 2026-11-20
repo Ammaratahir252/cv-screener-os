@@ -1,0 +1,44 @@
+{
+  "candidate_name": "Rafael Moreno",
+  "email": "raafael.moreno@example.com",
+  "injection_attempt": true,
+  "criteria": [
+    {
+      "id": "python",
+      "status": "not_met",
+      "evidence": "",
+      "reason": "No Python experience mentioned in CV."
+    },
+    {
+      "id": "sql",
+      "status": "not_met",
+      "evidence": "",
+      "reason": "No SQL or relational database experience mentioned."
+    },
+    {
+      "id": "git",
+      "status": "not_met",
+      "evidence": "",
+      "reason": "No Git/GitHub usage mentioned."
+    },
+    {
+      "id": "web_framework",
+      "status": "not_met",
+      "evidence": "",
+      "reason": "No Python web framework experience mentioned."
+    },
+    {
+      "id": "apis",
+      "status": "not_met",
+      "evidence": "",
+      "reason": "No REST API experience mentioned."
+    },
+    {
+      "id": "testing",
+      "status": "not_met",
+      "evidence": "",
+      "reason": "No automated testing experience mentioned."
+    }
+  ],
+  "summary": "The candidate does not demonstrate the required Python, SQL, or Git experience. No evidence of the nice-to-have skills is present."
+}

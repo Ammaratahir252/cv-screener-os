@@ -1,0 +1,17 @@
+Arjun Mehta
+arjun.mehta@example.com | Pune
+
+Career changer moving from accounting into software development.
+
+Training
+Python Developer Bootcamp, CodeStart (6 months, completed 2025)
+- Final project: expense tracker in Python with Flask and an SQLite database.
+- Learned basic SQL queries.
+- Pushed all bootcamp projects to GitHub.
+
+Experience
+Accounts Executive, Mehta & Co (2019 - 2024)
+- Built Excel macros to automate monthly reconciliations.
+
+Skills: Python, Flask, SQLite, Excel, VBA
+Education: BCom Accounting

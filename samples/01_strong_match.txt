@@ -1,0 +1,17 @@
+Daniel Okafor
+daniel.okafor@example.com | Lagos (open to remote)
+
+Summary
+Backend developer with 2 years of professional Python experience building web services.
+
+Experience
+Junior Backend Developer, Brightlane Apps (Jan 2024 - present)
+- Build and maintain REST APIs in Python with Django REST Framework.
+- Write SQL queries and migrations for a PostgreSQL database.
+- Write unit tests with pytest; all code reviewed through pull requests on GitHub.
+
+Intern, Software Team, Kora Logistics (Jun 2023 - Dec 2023)
+- Automated weekly reports with Python and pandas.
+
+Skills: Python, Django, PostgreSQL, SQL, Git, GitHub, pytest, REST APIs, Docker
+Education: BSc Computer Science, 2023

@@ -1,0 +1,12 @@
+Tomasz Nowak
+tomasz.nowak@example.com | Krakow
+
+Java developer with 3 years of experience.
+
+Experience
+Java Developer, Polar Systems (2022 - present)
+- Build Spring Boot microservices with MySQL databases.
+- Use Git and GitLab CI for every release.
+- Write JUnit tests.
+
+Skills: Java, Spring Boot, MySQL, SQL, Git, JUnit, REST APIs

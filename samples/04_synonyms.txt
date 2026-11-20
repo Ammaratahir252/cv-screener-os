@@ -1,0 +1,13 @@
+Mei Lin Chen
+meilin.chen@example.com | Singapore
+
+Software engineer (18 months) focused on data-heavy backend services.
+
+Work
+Software Engineer, Tidewater Data (Mar 2024 - present)
+- Develop backend services in Py 3 using FastAPI.
+- Design tables and write queries in Postgres.
+- Daily version control with branches and pull requests on GitHub.
+- Added integration tests using unittest.
+
+Tools: Py, FastAPI, Postgres, GitHub, Linux

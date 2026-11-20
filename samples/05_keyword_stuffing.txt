@@ -1,0 +1,11 @@
+Kevin Brandt
+kevin.brandt@example.com
+
+Skills: Python Python Python SQL SQL Git GitHub Django Flask FastAPI REST API pytest
+machine learning AI cloud AWS Docker Kubernetes Python SQL Git
+
+Objective: Looking for a Python developer role.
+
+Experience
+Retail Sales Associate, CityMart (2021 - present)
+- Helped customers, managed stock and handled the till.

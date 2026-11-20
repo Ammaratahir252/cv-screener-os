@@ -1,0 +1,39 @@
+# The job you are hiring for. Edit this file to screen for a different role.
+role: Junior Python Developer (Remote)
+
+# Must-have requirements. A candidate is only advanced if ALL of these are
+# backed by a quote from their CV.
+# keywords: the quote the AI gives must contain at least one of these words,
+# otherwise the point is marked "unverified" and a person checks it.
+must_have:
+  - id: python
+    label: Python experience
+    text: At least 1 year of hands-on Python experience (work, internship or substantial projects)
+    keywords: [python, py, django, flask, fastapi, pandas]
+  - id: sql
+    label: SQL / databases
+    text: Has used SQL or a relational database (e.g. PostgreSQL, MySQL, SQLite)
+    keywords: [sql, postgres, postgresql, mysql, sqlite, mariadb, oracle, database, databases]
+  - id: git
+    label: Git / GitHub
+    text: Uses Git or GitHub for version control
+    keywords: [git, github, gitlab, bitbucket, version control, pull request, pull requests]
+
+# Nice-to-haves. They add to the notes but never decide on their own.
+nice_to_have:
+  - id: web_framework
+    label: Web framework
+    text: Has used a Python web framework (Django, Flask or FastAPI)
+    keywords: [django, flask, fastapi]
+  - id: apis
+    label: APIs
+    text: Has built or used REST APIs
+    keywords: [api, apis, rest, restful, endpoint, endpoints]
+  - id: testing
+    label: Automated tests
+    text: Writes automated tests (e.g. pytest, unittest)
+    keywords: [test, tests, testing, pytest, unittest, tdd]
+
+# Who signs the follow-up emails.
+recruiter_name: Sara (Talent Team)
+company_name: Northwind Talent

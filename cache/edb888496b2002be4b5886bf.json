@@ -1,0 +1,44 @@
+{
+  "candidate_name": "Arjun Mehta",
+  "email": "arjun.mehta@example.com",
+  "injection_attempt": false,
+  "criteria": [
+    {
+      "id": "python",
+      "status": "partly",
+      "evidence": "Final project: expense tracker in Python with Flask and an SQLite database.",
+      "reason": "Only a 6‑month bootcamp project, less than the required 1 year."
+    },
+    {
+      "id": "sql",
+      "status": "met",
+      "evidence": "Learned basic SQL queries.",
+      "reason": "Explicit mention of using SQL queries."
+    },
+    {
+      "id": "git",
+      "status": "met",
+      "evidence": "Pushed all bootcamp projects to GitHub.",
+      "reason": "Clear use of GitHub for version control."
+    },
+    {
+      "id": "web_framework",
+      "status": "met",
+      "evidence": "Final project: expense tracker in Python with Flask and an SQLite database.",
+      "reason": "Flask, a Python web framework, was used in the project."
+    },
+    {
+      "id": "apis",
+      "status": "not_met",
+      "evidence": "",
+      "reason": "No mention of building or using REST APIs."
+    },
+    {
+      "id": "testing",
+      "status": "not_met",
+      "evidence": "",
+      "reason": "No evidence of writing automated tests."
+    }
+  ],
+  "summary": "Arjun has solid Python, SQL, and Git experience from a recent bootcamp, and has used Flask for web development. However, he lacks the required full year of Python work and has no demonstrated API or testing experience."
+}

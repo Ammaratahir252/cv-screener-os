@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CV Screener</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@1,8..60,400;1,8..60,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F6F9; --surface:#FFFFFF; --ink:#18202E; --muted:#596273; --line:#D9DEE6;
+  --pen:#24507A; --pen-ink:#FFFFFF; --pen-soft:#E7EEF6;
+  --hl:#FFE680;
+  --go:#17714A; --go-bg:#E3F3EA; --no:#AE3029; --no-bg:#FBE8E6;
+  --wait:#875800; --wait-bg:#FFF1D1; --err:#4F5868; --err-bg:#ECEFF3;
+  --sans:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 var(--sans)}
+button,input{font:inherit}
+:focus-visible{outline:3px solid var(--pen);outline-offset:2px;border-radius:6px}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+@media (max-width:600px){.wrap{padding:0 16px} body{font-size:16px}}
+
+/* Header */
+header{background:var(--surface);border-bottom:1px solid var(--line)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0 0}
+.brand{font-weight:700;color:var(--pen);font-size:15px}
+.help{color:var(--muted);font-size:15px}
+h1{font-size:clamp(28px,4.6vw,40px);line-height:1.12;margin:10px 0 6px;letter-spacing:-.01em}
+.needs{margin:0 0 18px;color:var(--muted);max-width:64ch}
+.needs b{color:var(--ink);font-weight:700}
+ol.steps{list-style:none;display:flex;gap:6px;margin:0;padding:0 0 0;counter-reset:s;overflow-x:auto}
+ol.steps li{counter-increment:s;display:flex;align-items:center;gap:8px;padding:10px 14px 12px;color:var(--muted);border-bottom:3px solid transparent;white-space:nowrap;font-size:15px}
+ol.steps li::before{content:counter(s);display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;border:1.5px solid currentColor;font-weight:700;font-size:13px}
+ol.steps li.now{color:var(--pen);border-bottom-color:var(--pen);font-weight:700}
+ol.steps li.done{color:var(--go)}
+ol.steps li.done::before{content:"✓";background:var(--go);color:#fff;border-color:var(--go)}
+
+main.wrap{padding-top:28px;padding-bottom:150px}
+section{margin-bottom:36px}
+h2{font-size:22px;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 16px}
+
+/* Notices */
+.notice{border-radius:10px;padding:14px 16px;margin-bottom:24px;border:1px solid}
+.notice.warn{background:var(--wait-bg);border-color:#EBCB86;color:#5C3D00}
+.notice.bad{background:var(--no-bg);border-color:#EDB9B4;color:#7A1F19}
+.notice strong{display:block;margin-bottom:2px}
+
+/* Step 1 */
+.drop{display:block;background:var(--surface);border:2px dashed #AEB8C6;border-radius:14px;padding:30px 20px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
+.drop:hover,.drop.over{border-color:var(--pen);background:var(--pen-soft)}
+.drop .big{font-size:20px;font-weight:700;display:block}
+.drop .small{color:var(--muted);font-size:15px}
+.drop input{position:absolute;width:1px;height:1px;opacity:0}
+.linkish{color:var(--pen);text-decoration:underline;text-underline-offset:3px}
+.files{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.files li{display:flex;align-items:center;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:4px 4px 4px 12px;font-size:15px}
+.files button{border:0;background:none;color:var(--muted);width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:18px;line-height:1}
+.files button:hover{background:var(--err-bg);color:var(--ink)}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:18px}
+.btn{border:0;border-radius:10px;padding:12px 20px;font-weight:700;cursor:pointer}
+.btn.primary{background:var(--pen);color:var(--pen-ink)}
+.btn.primary:hover{background:#1B3F62}
+.btn.quiet{background:transparent;color:var(--pen);padding:12px 6px;text-decoration:underline;text-underline-offset:3px}
+.btn:disabled{background:#B9C1CC;color:#fff;cursor:not-allowed}
+.progress{margin-top:18px}
+.bar{height:10px;background:#E1E6ED;border-radius:6px;overflow:hidden}
+.bar span{display:block;height:100%;background:var(--pen);width:0;transition:width .4s}
+.progress p{margin:8px 0 0;color:var(--muted)}
+
+/* Results */
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 18px}
+.filters button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;cursor:pointer;color:var(--ink);font-size:15px}
+.filters button b{margin-left:4px}
+.filters button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+.cand{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--err);border-radius:12px;padding:18px 20px;margin-bottom:14px}
+.cand.ADVANCE{border-left-color:var(--go)}
+.cand.REJECT{border-left-color:var(--no)}
+.cand.REVIEW{border-left-color:#D99A00}
+.cand-top{display:grid;grid-template-columns:1fr auto;gap:8px 16px;align-items:start}
+.name{font-size:20px;font-weight:700;margin:0;line-height:1.25}
+.file{color:var(--muted);font-size:14px}
+.tag{display:inline-block;border-radius:6px;padding:3px 10px;font-weight:700;font-size:14px;white-space:nowrap}
+.tag.ADVANCE{background:var(--go-bg);color:var(--go)}
+.tag.REJECT{background:var(--no-bg);color:var(--no)}
+.tag.REVIEW{background:var(--wait-bg);color:var(--wait)}
+.tag.ERROR{background:var(--err-bg);color:var(--err)}
+.ai{grid-column:1/-1;margin:2px 0 0}
+.ai .lbl{color:var(--muted)}
+.flags{list-style:none;padding:0;margin:10px 0 0}
+.flags li{background:var(--wait-bg);color:#5C3D00;border-radius:8px;padding:6px 12px;margin-top:6px;font-size:15px}
+.flags li::before{content:"⚠ ";}
+
+.checks{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+.check{display:grid;grid-template-columns:28px 1fr;gap:0 10px}
+.ico{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px;margin-top:1px}
+.ico.met{background:var(--go-bg);color:var(--go)}
+.ico.partly{background:var(--wait-bg);color:var(--wait)}
+.ico.not_met{background:var(--no-bg);color:var(--no)}
+.ico.unverified{background:var(--wait-bg);color:var(--wait);border:1.5px dashed var(--wait)}
+.check .what{font-weight:700}
+.check .state{color:var(--muted);font-weight:400}
+.quote{font-family:var(--serif);font-style:italic;font-size:17px;margin:3px 0 0;line-height:1.5}
+.quote mark{background:linear-gradient(transparent 12%, var(--hl) 12%, var(--hl) 88%, transparent 88%);color:inherit;padding:0 2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.note{color:var(--wait);font-size:15px;margin-top:2px}
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--pen);font-weight:700;width:fit-content}
+.summary-text{margin:10px 0 0;color:var(--muted);max-width:68ch}
+.decide{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.decide .q{font-weight:700;margin-right:4px}
+.seg{display:inline-flex;border:1.5px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:var(--surface);padding:9px 18px;cursor:pointer;font-weight:700;color:var(--ink)}
+.seg button+button{border-left:1.5px solid var(--line)}
+.seg button.on.ADVANCE{background:var(--go);color:#fff}
+.seg button.on.REJECT{background:var(--no);color:#fff}
+.decide .hint{color:var(--muted);font-size:14px}
+.errtext{margin:8px 0 0}
+.empty{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;color:var(--muted)}
+
+/* Bottom bar */
+.dock{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(24,32,46,.07)}
+.dock .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+.dock p{margin:0}
+.dock .small{color:var(--muted);font-size:14px}
+
+/* Drafts */
+.draft{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-bottom:14px;overflow:hidden}
+.draft-head{padding:14px 18px;border-bottom:1px solid var(--line);display:grid;gap:2px}
+.draft-head .row{display:flex;gap:8px}
+.draft-head .k{color:var(--muted);width:66px;flex:none}
+.draft pre{margin:0;padding:16px 18px;white-space:pre-wrap;font:16px/1.6 var(--sans)}
+.draft-actions{display:flex;gap:10px;flex-wrap:wrap;padding:0 18px 16px}
+.btn.small{padding:8px 14px;font-size:15px}
+.btn.outline{background:var(--surface);border:1.5px solid var(--pen);color:var(--pen)}
+a.btn{text-decoration:none;display:inline-block}
+.batch{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.batch p{margin:0;flex:1 1 260px}
+#add.compact .drop,#add.compact .files,#add.compact > h2,#add.compact > .sub{display:none}
+.meta{color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;gap:2px 14px}
+.toast{position:fixed;left:50%;top:18px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:10px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+.hidden{display:none !important}
+@media (max-width:600px){
+  .cand-top{grid-template-columns:1fr}
+  .seg button{padding:9px 14px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top"><span class="brand">CV Screener</span><span class="help">Nothing is emailed until you approve it.</span></div>
+    <h1 id="role">Loading…</h1>
+    <p class="needs" id="needs"></p>
+    <ol class="steps" id="steps">
+      <li id="s1">Add CVs</li><li id="s2">Check the results</li><li id="s3">Approve and get emails</li>
+    </ol>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="keyNotice" class="notice warn hidden" role="status">
+    <strong>The AI key is missing.</strong>
+    Open the file called <b>.env</b> in this folder with Notepad, paste your key after <b id="keyName">GROQ_API_KEY</b>=, save it, then close this window and start again. CVs that were already checked before still work.
+  </div>
+  <div id="error" class="notice bad hidden" role="alert"></div>
+
+  <section id="add">
+    <h2>Add the CVs you want to check</h2>
+    <p class="sub">PDF or text files. Word files need to be saved as PDF first.</p>
+    <label class="drop" id="drop">
+      <input type="file" id="picker" multiple accept=".pdf,.txt,.md,.doc,.docx">
+      <span class="big">Drop CV files here</span>
+      <span class="small">or <span class="linkish">choose files from your computer</span></span>
+    </label>
+    <ul class="files" id="files" aria-label="CVs waiting to be checked"></ul>
+    <div class="batch hidden" id="batch">
+      <p id="batchText"></p>
+      <button class="btn quiet" id="addMore">Add more CVs</button>
+      <button class="btn quiet" id="batchNew">Start a new batch</button>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="screenBtn" disabled>Check CVs</button>
+      <button class="btn quiet hidden" id="newBatch">Start a new batch</button>
+    </div>
+    <div class="progress hidden" id="progress" aria-live="polite">
+      <div class="bar"><span id="barFill"></span></div>
+      <p id="progressText"></p>
+    </div>
+  </section>
+
+  <section id="results" class="hidden">
+    <div class="head">
+      <h2>Results</h2>
+      <a class="linkish" href="/api/sheet" id="sheetLink">Download as a spreadsheet</a>
+    </div>
+    <p class="sub" id="resultsSub"></p>
+    <div class="filters" id="filters" role="group" aria-label="Show"></div>
+    <div id="list"></div>
+  </section>
+
+  <section id="drafts" class="hidden">
+    <h2>Email drafts</h2>
+    <p class="sub">Read each one, then copy it or open it in your email app. Nothing has been sent. Copies are also saved in the <b>outbox</b> folder.</p>
+    <div id="draftList"></div>
+  </section>
+</main>
+
+<div class="dock hidden" id="dock">
+  <div class="wrap">
+    <div>
+      <p id="dockCount"></p>
+      <p class="small">Emails are only drafted for candidates you decide. Nothing is sent.</p>
+    </div>
+    <button class="btn primary" id="approveBtn" disabled>Create email drafts</button>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+let S = null, filter = "all";
+
+const STATUS = {
+  met: ["✓", "shown in the CV"],
+  partly: ["~", "only partly shown"],
+  not_met: ["✕", "not found in the CV"],
+  unverified: ["?", "not confirmed, please check yourself"],
+};
+const LABEL = {ADVANCE: "Advance", REJECT: "Reject", "NEEDS REVIEW": "Needs your review", ERROR: "Could not check"};
+const cls = d => d === "NEEDS REVIEW" ? "REVIEW" : d;
+
+async function api(path, body) {
+  const r = await fetch(path, body === undefined ? {} : {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)});
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(data.error || "Something went wrong. Check the black window for details.");
+  return data;
+}
+function esc(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function showError(msg) { const e = $("error"); e.innerHTML = msg ? "<strong>That did not work.</strong>" + esc(msg) : ""; e.classList.toggle("hidden", !msg); if (msg) e.scrollIntoView({behavior: "smooth", block: "center"}); }
+function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 1800); }
+function joinList(a) { return a.length < 2 ? a.join("") : a.slice(0, -1).join(", ") + " and " + a[a.length - 1]; }
+
+async function load() {
+  try { S = await api("/api/state"); } catch (e) { showError(e.message); return; }
+  render();
+  if (S.job.running) poll();
+}
+
+function render() {
+  $("role").textContent = S.role;
+  $("needs").innerHTML = "To move forward, a candidate needs <b>" + esc(joinList(S.must.map(m => m.label))) + "</b>. "
+    + (S.nice.length ? "Good to have: " + esc(joinList(S.nice.map(m => m.label))) + "." : "");
+  $("keyNotice").classList.toggle("hidden", S.key_ok);
+  $("keyName").textContent = S.key_name;
+
+  // step 1
+  $("files").innerHTML = S.inbox.map(n => `<li>${esc(n)}<button aria-label="Remove ${esc(n)}" data-rm="${esc(n)}">×</button></li>`).join("");
+  const n = S.inbox.length;
+  $("screenBtn").disabled = !n || S.job.running;
+  $("screenBtn").textContent = n ? `Check ${n} CV${n > 1 ? "s" : ""}` : "Check CVs";
+
+  const checked = new Set((S.run?.rows || []).map(r => r.File));
+  const fresh = S.inbox.filter(f => !checked.has(f));
+  const compact = !!S.run && !fresh.length;
+  $("add").classList.toggle("compact", compact);
+  $("batch").classList.toggle("hidden", !compact);
+  $("screenBtn").classList.toggle("hidden", compact);
+  $("newBatch").classList.toggle("hidden", compact || !(S.run || n));
+  if (compact) $("batchText").textContent = `${S.run.rows.length} CV${S.run.rows.length > 1 ? "s" : ""} in this batch, all checked.`;
+  else if (S.run && fresh.length) $("screenBtn").textContent = `Check ${fresh.length} new CV${fresh.length > 1 ? "s" : ""}`;
+
+  // results
+  const run = S.run;
+  $("results").classList.toggle("hidden", !run);
+  $("dock").classList.toggle("hidden", !run);
+  if (run) renderResults(run);
+
+  // drafts
+  const drafts = run?.drafts || [];
+  $("drafts").classList.toggle("hidden", !drafts.length);
+  $("draftList").innerHTML = drafts.map((d, i) => `
+    <article class="draft">
+      <div class="draft-head">
+        <div class="row"><span class="k">To</span><span>${esc(d.candidate)} &lt;${esc(d.to || "no email in CV")}&gt;</span></div>
+        <div class="row"><span class="k">Subject</span><strong>${esc(d.subject)}</strong></div>
+      </div>
+      <pre>${esc(d.body)}</pre>
+      <div class="draft-actions">
+        <button class="btn small outline" data-copy="${i}">Copy email</button>
+        <a class="btn small outline" href="mailto:${encodeURIComponent(d.to)}?subject=${encodeURIComponent(d.subject)}&body=${encodeURIComponent(d.body)}">Open in my email app</a>
+      </div>
+    </article>`).join("");
+
+  // steps
+  const decided = run ? Object.values(run.decisions || {}).filter(Boolean).length : 0;
+  $("s1").className = run ? "done" : "now";
+  $("s2").className = !run ? "" : drafts.length ? "done" : "now";
+  $("s3").className = drafts.length ? "done" : (decided ? "now" : "");
+}
+
+function renderResults(run) {
+  const rows = run.rows;
+  const counts = {all: rows.length};
+  rows.forEach(r => counts[r["AI recommendation"]] = (counts[r["AI recommendation"]] || 0) + 1);
+  $("resultsSub").textContent = `${rows.length} CV${rows.length > 1 ? "s" : ""} checked on ${run.time}. Read the evidence, then choose Advance or Reject for each candidate.`;
+  const order = [["all", "All"], ["NEEDS REVIEW", "Needs your review"], ["ADVANCE", "Advance"], ["REJECT", "Reject"], ["ERROR", "Could not check"]];
+  $("filters").innerHTML = order.filter(([k]) => counts[k]).map(([k, l]) =>
+    `<button data-filter="${k}" aria-pressed="${filter === k}">${l}<b>${counts[k]}</b></button>`).join("");
+
+  const rank = {"NEEDS REVIEW": 0, ADVANCE: 1, REJECT: 2, ERROR: 3};
+  const shown = rows.filter(r => filter === "all" || r["AI recommendation"] === filter)
+    .slice().sort((a, b) => rank[a["AI recommendation"]] - rank[b["AI recommendation"]]);
+  $("list").innerHTML = shown.length ? shown.map(card).join("") : `<p class="empty">Nothing here.</p>`;
+
+  const people = rows.filter(r => r["AI recommendation"] !== "ERROR");
+  const decided = people.filter(r => run.decisions?.[r.File]).length;
+  $("dockCount").innerHTML = `<b>You decided ${decided} of ${people.length} candidates.</b>`;
+  const drafted = Object.fromEntries((run.drafts || []).map(d => [d.file, d.decision]));
+  const pending = people.filter(r => run.decisions?.[r.File] && drafted[r.File] !== run.decisions[r.File]).length;
+  $("approveBtn").disabled = !pending;
+  $("approveBtn").textContent = pending ? `Create ${pending} email draft${pending > 1 ? "s" : ""}`
+    : (run.drafts?.length ? "Email drafts are ready below" : "Create email drafts");
+}
+
+function card(r) {
+  const rec = r["AI recommendation"], d = r.details || {}, run = S.run;
+  if (rec === "ERROR") {
+    return `<article class="cand ERROR">
+      <div class="cand-top"><div><p class="name">${esc(r.File)}</p></div><span class="tag ERROR">Could not check</span></div>
+      <p class="errtext">${esc(d.error || r.Why)}</p></article>`;
+  }
+  const mine = run.decisions?.[r.File] || "";
+  const crit = Object.fromEntries([...S.must, ...S.nice].map(c => [c.id, c]));
+  const checkHtml = c => {
+    const [icon, words] = STATUS[c.status] || ["?", c.status];
+    return `<li class="check"><span class="ico ${c.status}" aria-hidden="true">${icon}</span><div>
+      <span class="what">${esc(crit[c.id]?.label || c.id)}</span> <span class="state">${words}</span>
+      ${c.evidence ? `<p class="quote"><mark>“${esc(c.evidence)}”</mark></p>` : ""}
+      ${c.status === "unverified" && c.note ? `<p class="note">${esc(c.note)}</p>` : ""}
+    </div></li>`;
+  };
+  const must = (d.checks || []).filter(c => c.kind === "must_have");
+  const nice = (d.checks || []).filter(c => c.kind === "nice_to_have");
+  return `<article class="cand ${cls(rec)}">
+    <div class="cand-top">
+      <div><p class="name">${esc(r.Candidate)}</p><span class="meta"><span>${esc(r.File)}</span>${r.Email ? `<span>${esc(r.Email)}</span>` : ""}</span></div>
+      <span class="tag ${cls(rec)}">AI suggests: ${LABEL[rec]}</span>
+      <p class="ai"><span class="lbl">Why:</span> ${esc(r.Why)}</p>
+    </div>
+    ${(d.flags || []).length ? `<ul class="flags">${d.flags.map(f => `<li>${esc(f)}</li>`).join("")}</ul>` : ""}
+    <ul class="checks" aria-label="Must-haves">${must.map(checkHtml).join("")}</ul>
+    <details${rec === "NEEDS REVIEW" ? " open" : ""}>
+      <summary>Good-to-haves and AI summary</summary>
+      <ul class="checks">${nice.map(checkHtml).join("")}</ul>
+      ${d.summary ? `<p class="summary-text"><b>AI's own summary</b> (the suggestion above comes from fixed rules, not from this text): ${esc(d.summary)}</p>` : ""}
+    </details>
+    <div class="decide">
+      <span class="q">Your decision</span>
+      <span class="seg" role="group" aria-label="Your decision for ${esc(r.Candidate)}">
+        <button class="ADVANCE ${mine === "ADVANCE" ? "on" : ""}" aria-pressed="${mine === "ADVANCE"}" data-file="${esc(r.File)}" data-d="ADVANCE">Advance</button>
+        <button class="REJECT ${mine === "REJECT" ? "on" : ""}" aria-pressed="${mine === "REJECT"}" data-file="${esc(r.File)}" data-d="REJECT">Reject</button>
+      </span>
+      <span class="hint">${mine ? (mine === rec ? "Same as the AI suggestion" : "You changed the AI suggestion") : "Not decided yet"}</span>
+    </div>
+  </article>`;
+}
+
+// ----- actions
+async function addFiles(list) {
+  showError("");
+  const files = await Promise.all([...list].map(f => new Promise((ok, fail) => {
+    const rd = new FileReader();
+    rd.onload = () => ok({name: f.name, b64: rd.result.split(",")[1] || ""});
+    rd.onerror = () => fail(new Error("Could not read " + f.name));
+    rd.readAsDataURL(f);
+  })));
+  try {
+    const res = await api("/api/upload", {files});
+    S.inbox = res.inbox; render(); toast(`${res.added.length} file${res.added.length > 1 ? "s" : ""} added`);
+  } catch (e) { showError(e.message); }
+}
+
+async function poll() {
+  $("progress").classList.remove("hidden");
+  const j = await api("/api/progress").catch(() => null);
+  if (!j) return setTimeout(poll, 1500);
+  const pct = j.total ? Math.round(100 * j.done / j.total) : 5;
+  $("barFill").style.width = Math.max(pct, 4) + "%";
+  $("progressText").textContent = j.running
+    ? `Reading CV ${Math.min(j.done + 1, j.total)} of ${j.total}${j.current ? ": " + j.current : ""}. This takes a few seconds per CV.`
+    : "";
+  if (j.running) return setTimeout(poll, 800);
+  $("progress").classList.add("hidden");
+  if (j.error) showError(j.error);
+  filter = "all";
+  await load();
+  if (!j.error) { toast("All CVs checked"); $("results").scrollIntoView({behavior: "smooth"}); }
+}
+
+$("addMore").addEventListener("click", () => $("picker").click());
+$("picker").addEventListener("change", e => { if (e.target.files.length) addFiles(e.target.files); e.target.value = ""; });
+const drop = $("drop");
+["dragenter", "dragover"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add("over"); }));
+["dragleave", "drop"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove("over"); }));
+drop.addEventListener("drop", e => e.dataTransfer.files.length && addFiles(e.dataTransfer.files));
+window.addEventListener("dragover", e => e.preventDefault());
+window.addEventListener("drop", e => e.preventDefault());
+
+$("files").addEventListener("click", async e => {
+  const n = e.target.dataset.rm; if (!n) return;
+  try { S.inbox = (await api("/api/remove", {name: n})).inbox; render(); } catch (x) { showError(x.message); }
+});
+$("screenBtn").addEventListener("click", async () => {
+  showError("");
+  try { await api("/api/screen", {}); S.job.running = true; $("screenBtn").disabled = true; poll(); } catch (e) { showError(e.message); }
+});
+$("batchNew").addEventListener("click", () => $("newBatch").click());
+$("newBatch").addEventListener("click", async () => {
+  if (!confirm("Start a new batch? The current CVs move to the archive folder. Your review sheets and drafts stay saved.")) return;
+  try { await api("/api/new-batch", {}); filter = "all"; await load(); window.scrollTo({top: 0}); } catch (e) { showError(e.message); }
+});
+$("filters").addEventListener("click", e => {
+  const b = e.target.closest("button[data-filter]"); if (!b) return;
+  filter = b.dataset.filter; renderResults(S.run);
+});
+$("list").addEventListener("click", async e => {
+  const b = e.target.closest("button[data-d]"); if (!b) return;
+  const file = b.dataset.file, d = S.run.decisions?.[file] === b.dataset.d ? "" : b.dataset.d;
+  try { S.run.decisions = (await api("/api/decide", {file, decision: d})).decisions; render(); } catch (x) { showError(x.message); }
+});
+$("approveBtn").addEventListener("click", async () => {
+  showError("");
+  try {
+    const res = await api("/api/approve", {});
+    await load();
+    toast(`${res.drafts.length} email draft${res.drafts.length > 1 ? "s" : ""} ready`);
+    $("drafts").scrollIntoView({behavior: "smooth"});
+  } catch (e) { showError(e.message); }
+});
+$("draftList").addEventListener("click", async e => {
+  const i = e.target.dataset.copy; if (i === undefined) return;
+  const d = S.run.drafts[+i];
+  const text = `To: ${d.to}\nSubject: ${d.subject}\n\n${d.body}`;
+  try { await navigator.clipboard.writeText(text); toast("Email copied"); }
+  catch { toast("Select the text and press Ctrl+C to copy"); }
+});
+load();
+</script>
+</body>
+</html>

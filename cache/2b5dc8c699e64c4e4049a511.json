@@ -1,0 +1,44 @@
+{
+  "candidate_name": "Kevin Brandt",
+  "email": "kevin.brandt@example.com",
+  "injection_attempt": false,
+  "criteria": [
+    {
+      "id": "python",
+      "status": "partly",
+      "evidence": "Skills: Python Python Python SQL SQL Git GitHub Django Flask FastAPI REST API pytest",
+      "reason": "Only listed in skills, no work or project evidence"
+    },
+    {
+      "id": "sql",
+      "status": "partly",
+      "evidence": "Skills: Python Python Python SQL SQL Git GitHub Django Flask FastAPI REST API pytest",
+      "reason": "Only listed in skills, no work or project evidence"
+    },
+    {
+      "id": "git",
+      "status": "partly",
+      "evidence": "Skills: Python Python Python SQL SQL Git GitHub Django Flask FastAPI REST API pytest",
+      "reason": "Only listed in skills, no work or project evidence"
+    },
+    {
+      "id": "web_framework",
+      "status": "partly",
+      "evidence": "Skills: Python Python Python SQL SQL Git GitHub Django Flask FastAPI REST API pytest",
+      "reason": "Only listed in skills, no work or project evidence"
+    },
+    {
+      "id": "apis",
+      "status": "partly",
+      "evidence": "Skills: Python Python Python SQL SQL Git GitHub Django Flask FastAPI REST API pytest",
+      "reason": "Only listed in skills, no work or project evidence"
+    },
+    {
+      "id": "testing",
+      "status": "partly",
+      "evidence": "Skills: Python Python Python SQL SQL Git GitHub Django Flask FastAPI REST API pytest",
+      "reason": "Only listed in skills, no work or project evidence"
+    }
+  ],
+  "summary": "Candidate lists relevant Python, SQL, Git, and web framework skills but lacks concrete experience. Consider probing for actual hands‑on work."
+}

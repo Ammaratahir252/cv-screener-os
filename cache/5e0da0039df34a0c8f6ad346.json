@@ -1,0 +1,44 @@
+{
+  "candidate_name": "Tomasz Nowak",
+  "email": "tomasz.nowak@example.com",
+  "injection_attempt": false,
+  "criteria": [
+    {
+      "id": "python",
+      "status": "not_met",
+      "evidence": "",
+      "reason": "No Python experience mentioned."
+    },
+    {
+      "id": "sql",
+      "status": "met",
+      "evidence": "Build Spring Boot microservices with MySQL databases.",
+      "reason": "Demonstrates use of a relational database."
+    },
+    {
+      "id": "git",
+      "status": "met",
+      "evidence": "Use Git and GitLab CI for every release.",
+      "reason": "Uses Git for version control."
+    },
+    {
+      "id": "web_framework",
+      "status": "not_met",
+      "evidence": "",
+      "reason": "No Python web framework mentioned."
+    },
+    {
+      "id": "apis",
+      "status": "met",
+      "evidence": "Skills: Java, Spring Boot, MySQL, SQL, Git, JUnit, REST APIs",
+      "reason": "Mentions REST API experience."
+    },
+    {
+      "id": "testing",
+      "status": "met",
+      "evidence": "Write JUnit tests.",
+      "reason": "Writes automated tests."
+    }
+  ],
+  "summary": "The candidate has solid experience with SQL databases and Git version control, and also has REST API and automated testing experience. However, they lack any Python or Python web‑framework experience."
+}
